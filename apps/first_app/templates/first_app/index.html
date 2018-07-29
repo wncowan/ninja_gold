@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>NinjaGold</h1>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Your Gold:</th>
+            <th>Farm</th>
+            <th>Cave</th>
+            <th>House</th>
+            <th>Casino</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>{{request.session.gold}}</td>
+            <td>
+                <form action="/process/farm" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-default">GO</button>
+                </form>
+            </td>
+            <td>
+                <form action="/process/cave" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-default">GO</button>
+                </form>
+            </td>
+            <td>
+                <form action="/process/house" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-default">GO</button>
+                </form>
+            </td>
+            <td>
+                <form action="/process/casino" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-default">GO</button>
+                </form>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Activities</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for activity in request.session.activities %}
+            <tr>
+                <td>{{activity}}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <a href="/reset">Clear Activities</a>
+</body>
+</html>
